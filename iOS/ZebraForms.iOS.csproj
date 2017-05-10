@@ -99,6 +99,24 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.2.3.4.231\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
+    <Reference Include="ZXing.Net.Mobile.Core">
+      <HintPath>..\packages\ZXing.Net.Mobile.2.2.9\lib\Xamarin.iOS10\ZXing.Net.Mobile.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.portable">
+      <HintPath>..\packages\ZXing.Net.Mobile.2.2.9\lib\Xamarin.iOS10\zxing.portable.dll</HintPath>
+    </Reference>
+    <Reference Include="ZXingNetMobile">
+      <HintPath>..\packages\ZXing.Net.Mobile.2.2.9\lib\Xamarin.iOS10\ZXingNetMobile.dll</HintPath>
+    </Reference>
+    <Reference Include="LinkOS.Plugin.Abstractions">
+      <HintPath>..\packages\LinkOS_Xamarin_SDK.1.1.75\lib\Xamarin.iOS10\LinkOS.Plugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="LinkOS.Plugin">
+      <HintPath>..\packages\LinkOS_Xamarin_SDK.1.1.75\lib\Xamarin.iOS10\LinkOS.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="zsdk_iosx">
+      <HintPath>..\packages\LinkOS_Xamarin_SDK.1.1.75\lib\Xamarin.iOS10\zsdk_iosx.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ZebraForms\ZebraForms.csproj">
@@ -109,6 +127,13 @@
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\zebra_head-29.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\zebra_head-29%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\zebra_head-29%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\zebra_head-40%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\zebra_head-40%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\zebra_head-60%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\zebra_head-60%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -124,6 +149,22 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="ZxingScanning.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Zebra_Logo_Stacked_K.png" />
+    <BundleResource Include="Resources\Zebra_Logo_Stacked_W.png" />
+    <BundleResource Include="Resources\linkos.png" />
+    <BundleResource Include="Resources\emdk.png" />
+    <BundleResource Include="Resources\link.png" />
+    <BundleResource Include="Resources\link%402x.png" />
+    <BundleResource Include="Resources\link%403x.png" />
+    <BundleResource Include="Resources\barcode.png" />
+    <BundleResource Include="Resources\barcode%402x.png" />
+    <BundleResource Include="Resources\barcode%403x.png" />
+    <BundleResource Include="Resources\barcode_scanner.png" />
+    <BundleResource Include="Resources\barcode_scanner%402x.png" />
+    <BundleResource Include="Resources\barcode_scanner%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.4.231\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.231\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

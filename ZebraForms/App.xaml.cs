@@ -1,5 +1,6 @@
 ﻿using Xamarin.Forms;
 
+[assembly: Xamarin.Forms.Xaml.XamlCompilation(Xamarin.Forms.Xaml.XamlCompilationOptions.Compile)]
 namespace ZebraForms
 {
     public partial class App : Application
@@ -8,7 +9,7 @@ namespace ZebraForms
         {
             InitializeComponent();
 
-            MainPage = new ZebraFormsPage();
+            MainPage = new NavigationPage(new PrimaryContent());
         }
 
         protected override void OnStart()

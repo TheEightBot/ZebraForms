@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	xmlns:local="clr-namespace:ZebraForms" 
+	x:Class="ZebraForms.LinkOsPage"
+	Title="{Binding Title}"
+	Padding="0,8,0,8">
+	<StackLayout Spacing="8">
+		<Image Source="linkos.png" Aspect="AspectFit" HeightRequest="88" HorizontalOptions="CenterAndExpand" />
+		<ActivityIndicator x:Name="aiFindingPrinters" IsRunning="{Binding SearchingForPrinters}" />	
+		<Button x:Name="btnFindPrinters" Text="Find Printers" Command="{Binding LoadPrinters}" />
+		<Label x:Name="lblSearchingForPrinter" Text="{Binding CurrentStatus}" 
+			VerticalOptions="Center" HorizontalOptions="Center" 
+			HorizontalTextAlignment="Center" />
+		<ListView ItemsSource="{Binding FoundPrinters}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<SwitchCell Text="{Binding IpAddress}" On="{Binding Selected}" />
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+		<Button x:Name="btnPrint" Text="Print" Command="{Binding PrintSample}" />
+	</StackLayout>	
+</ContentPage>

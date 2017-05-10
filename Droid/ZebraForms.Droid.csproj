@@ -8,14 +8,15 @@
     <OutputType>Library</OutputType>
     <RootNamespace>ZebraForms.Droid</RootNamespace>
     <AssemblyName>ZebraForms.Droid</AssemblyName>
-    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
+    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
+    <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -26,6 +27,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
+    <JavaMaximumHeapSize>2G</JavaMaximumHeapSize>
+    <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -84,6 +87,27 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.2.3.4.231\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
+    <Reference Include="LinkOS.Plugin.Abstractions">
+      <HintPath>..\packages\LinkOS_Xamarin_SDK.1.1.75\lib\MonoAndroid\LinkOS.Plugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="LinkOS.Plugin">
+      <HintPath>..\packages\LinkOS_Xamarin_SDK.1.1.75\lib\MonoAndroid\LinkOS.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="ZSDK_ANDROIDX">
+      <HintPath>..\packages\LinkOS_Xamarin_SDK.1.1.75\lib\MonoAndroid\ZSDK_ANDROIDX.dll</HintPath>
+    </Reference>
+    <Reference Include="FastAndroidCamera">
+      <HintPath>..\packages\FastAndroidCamera.2.0.0\lib\MonoAndroid403\FastAndroidCamera.dll</HintPath>
+    </Reference>
+    <Reference Include="ZXing.Net.Mobile.Core">
+      <HintPath>..\packages\ZXing.Net.Mobile.2.2.9\lib\MonoAndroid403\ZXing.Net.Mobile.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.portable">
+      <HintPath>..\packages\ZXing.Net.Mobile.2.2.9\lib\MonoAndroid403\zxing.portable.dll</HintPath>
+    </Reference>
+    <Reference Include="ZXingNetMobile">
+      <HintPath>..\packages\ZXing.Net.Mobile.2.2.9\lib\MonoAndroid403\ZXingNetMobile.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ZebraForms\ZebraForms.csproj">
@@ -95,7 +119,9 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scanning.cs" />
+    <Compile Include="ZebraScanning.cs" />
+    <Compile Include="SplashScreen.cs" />
+    <Compile Include="ZxingScanning.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -111,6 +137,28 @@
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\logo_black.png" />
+    <AndroidResource Include="Resources\drawable\splash.xml" />
+    <AndroidResource Include="Resources\drawable-nodpi\logo_white.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\emdk.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\linkos.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\barcode.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\link.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\barcode.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\link.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\barcode.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\link.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\barcode.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\link.png" />
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\barcode_scanner.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\barcode_scanner.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\barcode_scanner.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\barcode_scanner.png" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="emdk-component">
@@ -120,6 +168,15 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\EMDKConfig.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\drawable-nodpi\" />
+    <Folder Include="Resources\drawable-mdpi\" />
+    <Folder Include="Resources\mipmap-hdpi\" />
+    <Folder Include="Resources\mipmap-mdpi\" />
+    <Folder Include="Resources\mipmap-xhdpi\" />
+    <Folder Include="Resources\mipmap-xxhdpi\" />
+    <Folder Include="Resources\mipmap-xxxhdpi\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />

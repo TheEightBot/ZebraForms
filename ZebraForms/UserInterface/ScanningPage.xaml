@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ZebraForms.ScanningPage">
+	<ContentPage.Content>
+		<StackLayout Spacing="8">
+			<Image Source="emdk.png" Aspect="AspectFit"  HeightRequest="88" HorizontalOptions="CenterAndExpand" />
+			<Label Text="Scan Status" HorizontalTextAlignment="Center" FontAttributes="Bold" />
+			<Label Text="{Binding ScanStatus}" VerticalOptions="Center" HorizontalTextAlignment="Center" />
+			<Button Text="Start Scanning" Command="{Binding StartScanning}" />
+			<Button Text="Stop Scanning" Command="{Binding StopScanning}" />
+			<Label Text="Scan Result" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+			<Label Text="{Binding ScanResult}" VerticalOptions="Center" HorizontalTextAlignment="Center" />
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

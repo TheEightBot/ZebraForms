@@ -19,6 +19,8 @@ namespace ZebraForms.iOS
 			Xamarin.Calabash.Start();
 #endif
 
+            Xamarin.Forms.DependencyService.Register<IScanning, ZxingScanning>();
+
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

@@ -5,7 +5,7 @@ using Symbol.XamarinEMDK.Barcode;
 
 namespace ZebraForms.Droid
 {
-    public class Scanning : Java.Lang.Object, IScanning, EMDKManager.IEMDKListener
+    public class ZebraScanning : Java.Lang.Object, IScanning, EMDKManager.IEMDKListener
     {
         EMDKManager _emdkManager;
         BarcodeManager _barcodeManager;
@@ -14,14 +14,21 @@ namespace ZebraForms.Droid
         public event EventHandler<ScanResultEventArgs> ScanResultFound;
         public event EventHandler<ScanStatusEventArgs> ScanStatusChanged;
 
-        public Scanning()
+        public ZebraScanning()
         {
         }
 
         public bool Initialize()
         {
-            var results = EMDKManager.GetEMDKManager(Android.App.Application.Context, this);
-            var wasSuccessful = results.StatusCode == EMDKResults.STATUS_CODE.Success;
+            var wasSuccessful = false;
+            try {
+                var results = EMDKManager.GetEMDKManager(Android.App.Application.Context, this);
+                wasSuccessful = results.StatusCode == EMDKResults.STATUS_CODE.Success;
+            } catch (Exception ex) {
+                wasSuccessful = false;
+                System.Diagnostics.Debug.WriteLine(ex);
+            }
+
             return wasSuccessful;
         }
 
@@ -75,7 +82,7 @@ namespace ZebraForms.Droid
                 config.DecoderParams.Code128.Enabled = false;
                 //config.ReaderParams.ReaderSpecific.ImagerSpecific.PickList = ScannerConfig.PickList.Enabled;
                 _scanner.SetConfig(config);
-
+                
                 _scanner.Read();
             }
         }
@@ -108,6 +115,8 @@ namespace ZebraForms.Droid
 
                 if(firstResult != null)
                     ScanResultFound?.Invoke(sender, new ScanResultEventArgs { ScannedText = firstResult.Data });
+
+                StopScanning();
             }
         }
     }
